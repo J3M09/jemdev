@@ -163,24 +163,34 @@
             { name: "AI", level: 78 }
         ];
 
+        const specialSkills = [
+            "Robotics Coaching and Learner Mentoring",
+            "Async/Non-Blocking Programming Patterns",
+            "Technical Support (Hardware/Software Troubleshooting)",
+            "Windows OS and Windows Server Administration",
+            "Embedded Systems & Robotics Development",
+            "Network Fundamentals (TCP/IP, DNS, DHCP)",
+            "3D Printing"
+        ];
+
         const projects = [
             {
                 title: "ID Generator System",
                 description: "Generate ID cards ready to print for DepEd employees and students",
                 icon: "fa-id-card",
-                tech: ["C#", ".NET", "MySQL"]
+                tech: ["C#", ".NET", "MySQL", "ESP32", "C++"]
             },
             {
                 title: "FileFortress",
-                description: "Encrypt and Decrypt Files using SHA256 algorithm",
+                description: "Encrypt and Decrypt Files using SHA256 algorithm and AES algorithm",
                 icon: "fa-shield-halved",
-                tech: ["Java", "Cryptography", "Security"]
+                tech: ["C#", "Cryptography", "Security"]
             },
             {
                 title: "SFTPEase",
                 description: "Activating SFTP service with a single click with customizable settings",
                 icon: "fa-server",
-                tech: ["Python", "SFTP", "Networking"]
+                tech: ["C#", "SSH", "SFTP", "Networking"]
             },
             {
                 title: "Arduino-Based Enrollment System",
@@ -192,46 +202,88 @@
 
         const experience = [
             {
-                year: "Present",
+                startDate: "11/02/2024",
+                endDate: "Present",
                 title: "Assessment Center Manager",
                 company: "Milestone Technological Institute Inc.",
-                description: "Managing assessment center operations and quality assurance"
+                type: "COS"
             },
             {
-                year: "Present",
-                title: "Web Application & Project Designer",
+                startDate: "05/11/2024",
+                endDate: "Present",
+                title: "Web Application and Project Designer",
                 company: "3K School and Office Supplies",
-                description: "Designing and developing user-friendly web applications"
+                type: "Part-Time"
             },
             {
-                year: "23/01/2026",
+                startDate: "27/11/2025",
+                endDate: "23/01/2026",
                 title: "Programming & Graphic Designer Instructor",
                 company: "Milestone Technological Institute Inc.",
-                description: "Teaching programming and graphic design courses"
+                type: "Project-Based"
             },
             {
-                year: "13/12/2024",
-                title: "Computer System Servicing NC II Instructor",
+                startDate: "18/11/2024",
+                endDate: "13/12/2024",
+                title: "Computer Systems Servicing NC II Instructor",
                 company: "Emmanuel John Institute of Science and Technology",
-                description: "Teaching computer systems servicing and technical support"
+                type: "Project-Based"
             },
             {
-                year: "17/05/2024",
+                startDate: "15/04/2024",
+                endDate: "17/05/2024",
                 title: "Programming & Graphic Designer Instructor",
                 company: "Milestone Technological Institute Inc.",
-                description: "Delivering programming and graphic design training"
+                type: "Project-Based"
             },
             {
-                year: "07/06/2023",
+                startDate: "23/03/2023",
+                endDate: "07/06/2023",
                 title: "Instructor Programming (Java) NC III",
                 company: "Milestone Technological Institute Inc.",
-                description: "Teaching Java programming NC III certification courses"
+                type: "Project-Based"
             },
             {
-                year: "31/03/2020",
+                startDate: "01/06/2018",
+                endDate: "31/03/2020",
                 title: "Computer Instructor",
                 company: "Jeremiah Christian Academy of Malinta",
-                description: "Teaching computer fundamentals and applications"
+                type: "COS"
+            },
+            {
+                startDate: "14/07/2020",
+                endDate: "Present",
+                title: "Software Developer",
+                company: "Private Individuals",
+                type: "Project-Based"
+            },
+            {
+                startDate: "14/07/2020",
+                endDate: "Present",
+                title: "Network Administrator / Network Technician",
+                company: "Private Individuals",
+                type: "Project-Based"
+            },
+            {
+                startDate: "14/07/2020",
+                endDate: "Present",
+                title: "CCTV Installer",
+                company: "Private and Public Companies and Institutions",
+                type: "Project-Based"
+            },
+            {
+                startDate: "14/07/2020",
+                endDate: "Present",
+                title: "Computer Technician",
+                company: "Private Individuals",
+                type: "Project-Based"
+            },
+            {
+                startDate: "14/07/2020",
+                endDate: "Present",
+                title: "Graphic Designer",
+                company: "Private Individuals",
+                type: "Project-Based"
             }
         ];
 
@@ -244,8 +296,19 @@
             "Visual Graphic Design NC III - 2018"
         ];
 
+        const recognitions = [
+            "Certificate of Appreciation - Qualified Scientist (IT Specialist) in the Robotics and Intelligent Machine Category DSTF & RSTF 2025, Malabon City National Science and Mathematics High School",
+            "Certificate of Recognition - ICT Programmer in the Science Investigatory Expo Category DSTF & RSTF 2025, Panghulo National High School",
+            "Certificate of Appreciation - Judge for Invitation Card Making Using MS Productivity (Division Festival of Talents SDO Malabon City 2025-2026)",
+            "Certificate of Appreciation - Resource Speaker on the Presentation of Developed Digital School ID System"
+        ];
+
+        const memberships = [
+            "One Camanava TVI Association"
+        ];
+
         // Animated title rotation
-        let titleIndex = 0;
+        let titleIndex = 1;
         const titleParts = ["Full-Stack Developer", "IT Specialist", "IoT Engineer", "Graphic Designer"];
         
         function animateTitle() {
@@ -264,11 +327,9 @@
             const qrcodeContainer = document.getElementById('qrcode');
             if (!qrcodeContainer) return;
             
-            // Clear any existing QR code
             qrcodeContainer.innerHTML = '';
             
             try {
-                // Generate QR code
                 new QRCode(qrcodeContainer, {
                     text: config.projects_url,
                     width: 200,
@@ -279,15 +340,13 @@
                 });
             } catch (error) {
                 console.error('QR Code generation error:', error);
-                // Fallback to API-based QR code
                 qrcodeContainer.innerHTML = `
                     <img 
                         src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(config.projects_url)}" 
-                        alt="QR Code to ${config.projects_url}"
+                        alt="QR Code"
                         width="200" 
                         height="200"
                         style="border-radius: 12px;"
-                        onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=color:${config.text_color}>QR Code unavailable</p>';"
                     />
                 `;
             }
@@ -410,7 +469,8 @@
                                         Passionate about creating innovative systems that solve real-world problems.
                                     </p>
                                     <div class="space-y-4">
-                                        ${experience.slice(0, 5).map((exp, i) => `
+                                        <h4 class="font-bold text-lg mb-4" style="color: ${textColor};">Work Experience</h4>
+                                        ${experience.map((exp, i) => `
                                             <div class="border-l-4 pl-6 py-2" style="border-color: ${primaryColor};">
                                                 <p class="font-semibold mb-1" style="font-size: ${baseSize}px; color: ${textColor};">
                                                     ${exp.title}
@@ -418,9 +478,14 @@
                                                 <p class="text-sm mb-1" style="color: ${primaryColor};">
                                                     ${exp.company}
                                                 </p>
-                                                <p class="mono text-xs" style="color: ${textColor}80;">
-                                                    ${exp.year}
-                                                </p>
+                                                <div class="flex items-center gap-3">
+                                                    <p class="mono text-xs" style="color: ${textColor}80;">
+                                                        ${exp.startDate} - ${exp.endDate}
+                                                    </p>
+                                                    <span class="text-xs px-2 py-1 rounded" style="background: ${primaryColor}15; color: ${primaryColor};">
+                                                        ${exp.type}
+                                                    </span>
+                                                </div>
                                             </div>
                                         `).join('')}
                                     </div>
@@ -429,7 +494,7 @@
                                     ${[
                                         { value: '8+', label: 'Years Experience' },
                                         { value: '50+', label: 'Projects Completed' },
-                                        { value: '12+', label: 'Certifications' }
+                                        { value: '15+', label: 'Certifications & Awards' }
                                     ].map((stat, i) => `
                                         <div class="text-center p-6 rounded-2xl" style="background: ${surfaceColor};">
                                             <div class="font-black mb-2" style="font-size: ${baseSize * 2.5}px; color: ${primaryColor};">
@@ -450,11 +515,23 @@
                             <h3 class="font-bold mb-12" style="font-size: ${baseSize * 2.5}px; color: ${textColor};">
                                 Skills & Technologies
                             </h3>
-                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
                                 ${skills.map((skill, i) => `
                                     <div class="card-hover border rounded-xl p-6 text-center" style="background: ${surfaceColor}; border-color: ${primaryColor}20;">
                                         <span class="font-semibold" style="font-size: ${baseSize}px; color: ${textColor};">
                                             ${skill.name}
+                                        </span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <h4 class="font-bold mb-6 text-xl" style="color: ${textColor};">Special Skills & Hobbies</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${specialSkills.map((skill, i) => `
+                                    <div class="flex items-center gap-3 p-4 rounded-xl border" style="background: ${surfaceColor}; border-color: ${primaryColor}15;">
+                                        <i class="fas fa-check-circle" style="color: ${primaryColor};"></i>
+                                        <span class="font-medium" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
+                                            ${skill}
                                         </span>
                                     </div>
                                 `).join('')}
@@ -503,13 +580,15 @@
                             </div>
                         </section>
 
-                        <!-- Certifications -->
+                        <!-- Certifications & Recognitions -->
                         <section class="mb-32 fade-in-left" style="animation-delay: 1.4s;">
                             <h2 class="text-sm font-bold tracking-widest mb-4" style="color: ${primaryColor};">CREDENTIALS</h2>
                             <h3 class="font-bold mb-12" style="font-size: ${baseSize * 2.5}px; color: ${textColor};">
                                 Certifications & Awards
                             </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            
+                            <h4 class="font-bold mb-6 text-xl" style="color: ${textColor};">Professional Certifications</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
                                 ${certifications.map((cert, i) => `
                                     <div class="flex items-start gap-4 p-6 rounded-xl border" style="background: ${surfaceColor}; border-color: ${primaryColor}15;">
                                         <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style="background: ${primaryColor}15;">
@@ -517,6 +596,34 @@
                                         </div>
                                         <p class="font-medium leading-relaxed" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
                                             ${cert}
+                                        </p>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <h4 class="font-bold mb-6 text-xl" style="color: ${textColor};">Non-Academic Distinctions & Recognition</h4>
+                            <div class="space-y-4 mb-12">
+                                ${recognitions.map((recognition, i) => `
+                                    <div class="flex items-start gap-4 p-6 rounded-xl border" style="background: ${surfaceColor}; border-color: ${primaryColor}15;">
+                                        <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style="background: ${accentColor}15;">
+                                            <i class="fas fa-award" style="color: ${accentColor};"></i>
+                                        </div>
+                                        <p class="font-medium leading-relaxed" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
+                                            ${recognition}
+                                        </p>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <h4 class="font-bold mb-6 text-xl" style="color: ${textColor};">Professional Memberships</h4>
+                            <div class="space-y-4">
+                                ${memberships.map((membership, i) => `
+                                    <div class="flex items-start gap-4 p-6 rounded-xl border" style="background: ${surfaceColor}; border-color: ${primaryColor}15;">
+                                        <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style="background: ${primaryColor}15;">
+                                            <i class="fas fa-users" style="color: ${primaryColor};"></i>
+                                        </div>
+                                        <p class="font-medium leading-relaxed" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
+                                            ${membership}
                                         </p>
                                     </div>
                                 `).join('')}
@@ -530,12 +637,18 @@
                                 <h3 class="font-bold mb-8" style="font-size: ${baseSize * 2.5}px; color: ${textColor};">
                                     Scan to Connect
                                 </h3>
-                                <a href="${config.projects_url}" target="_blank" rel="noopener noreferrer" class="inline-block p-8 rounded-3xl border-2 transition-all duration-300 hover:shadow-xl" style="background: ${surfaceColor}; border-color: ${primaryColor}20; text-decoration: none;">
-                                    <div id="qrcode" style="width: 200px; height: 200px; margin: 0 auto;"></div>
-                                    <p class="mt-6 font-semibold" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
-                                        Scan or click to view projects
-                                    </p>
-                                </a>
+                                <div class="inline-block p-8 rounded-3xl border-2 transition-all duration-300 hover:shadow-xl" style="background: ${surfaceColor}; border-color: ${primaryColor}20;">
+                                    <a href="${config.projects_url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                                        <div id="qrcode" style="width: 200px; height: 200px; margin: 0 auto;"></div>
+                                        <p class="mt-6 font-semibold" style="font-size: ${baseSize * 0.9375}px; color: ${textColor};">
+                                            Scan or click to view projects
+                                        </p>
+                                        <a href="${config.projects_url}" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-2 text-sm font-medium transition-colors hover:underline" style="color: ${primaryColor}; text-decoration: none;">
+                                            <i class="fas fa-link"></i>
+                                            <span>${config.projects_url}</span>
+                                        </a>
+                                    </a>
+                                </div>
                             </div>
                         </section>
 
